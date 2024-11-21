@@ -13,7 +13,6 @@ describe('Login Page tests', () => {
     const { getByTestId, getByText, getByRole } = render(
       <LoginPage navigation={{ navigate: navigateMock }} />
     );
-
     const image = getByTestId('pet-paw-image');
     expect(image).toBeTruthy();
 
