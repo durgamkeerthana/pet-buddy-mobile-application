@@ -12,9 +12,9 @@ const Stack = createNativeStackNavigator();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="InitialPage">
+      <Stack.Navigator initialRouteName="PetBuddy">
         <Stack.Screen
-          name="InitialPage"
+          name="PetBuddy"
           component={InitialPage}
         />
        <Stack.Screen name="Login" component={LoginPage}
