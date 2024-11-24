@@ -1,11 +1,10 @@
 import mongoose, { Document, Schema } from 'mongoose';
  export interface TUser extends Document{
-    name: string,
+    username: string,
     password: string,
  }
-
  const userSchema: Schema<TUser> = new Schema({
-    name:{
+    username:{
         type: String,
         required: true,
     },
@@ -14,9 +13,9 @@ import mongoose, { Document, Schema } from 'mongoose';
         required: true,
     },
  });
- const user= mongoose.model<TUser>('User', userSchema  );
+ const User= mongoose.model<TUser>('User', userSchema  );
  console.log("user model created");
 
-export default user;
+export default User;
 
 
