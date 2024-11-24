@@ -1,18 +1,44 @@
-import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackActions } from '@react-navigation/native';
 
 const LoginPage = ({ navigation }: any) => {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = () => {
     navigation.navigate('Register');
   };
-  // const handleLogin =()=>{
-  //   navigation.navigate('Home')
-  // }
+  const handlePressLogin = async () => {
+    setIsLoading(true);  
+    navigation.navigate('Loading');  
+    try {
+      const response = await fetch('http://localhost:3000/users/login', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
+      const data = await response.json();
+      if (response.ok) {
+       setTimeout(() => {
+        setIsLoading(false);  
+        navigation.dispatch(StackActions.replace('Main'));  
+      }, 3000); 
+      } else {
+        setIsLoading(false);
+        Alert.alert(data.message); 
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Error:', error);
+      Alert.alert('An error occurred while logging in');
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -37,11 +63,9 @@ const LoginPage = ({ navigation }: any) => {
         placeholder="Enter password"
         onChangeText={(text) => setpassword(text)}
       />
-
       <View style={styles.buttonview}>
-        <Button title="Login" color="white"  />
+        <Button title="Login" color="white" onPress={handlePressLogin} />
       </View>
-
       <TouchableOpacity onPress={handleRegister}>
         <Text>Don't have an account? Register</Text>
       </TouchableOpacity>

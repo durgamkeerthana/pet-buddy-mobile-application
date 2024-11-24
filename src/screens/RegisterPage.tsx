@@ -1,4 +1,5 @@
-import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity, Alert } from 'react-native';
+import { StackActions } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -6,13 +7,41 @@ const RegisterPage = ({ navigation }: any) => {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const[confirmpassword, setconfirmpassword]= useState('');
-
+  
   const handleLogin = () => {
     navigation.navigate('Login');
   };
-  // const handleRegister =()=>{
-  //   navigation.navigate('Home')
-  // }
+  const handlePressRegister = async () => {
+    navigation.navigate('Loading');  
+    if (password !== confirmpassword) {
+      Alert.alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/users/createUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        Alert.alert(data.message);
+        navigation.dispatch(StackActions.replace('Login')); 
+      } else {
+        Alert.alert(data.message); 
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      Alert.alert('User registration failed');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,7 +76,7 @@ const RegisterPage = ({ navigation }: any) => {
       />
 
       <View style={styles.buttonview}>
-        <Button title="Register" color="white"  />
+        <Button title="Register" color="white" onPress={handlePressRegister}  />
       </View>
 
       <TouchableOpacity onPress={handleLogin}>
