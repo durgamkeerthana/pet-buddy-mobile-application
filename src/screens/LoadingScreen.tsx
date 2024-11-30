@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const LoadingScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-        <Image style={styles.image}source={require('../assets/loadingscreen.png')}/>
+        <Image  testID="image" style={styles.image}source={require('../assets/loadingscreen.png')}/>
         </SafeAreaView>
   )
 }
