@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import AddPetScreen from '../src/screens/AddPetScreen';
+import AddPetScreen from '../src/screens/AddPet';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 jest.mock('react-native-image-picker', () => ({
