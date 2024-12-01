@@ -41,10 +41,11 @@ useEffect(() => {
 }, []); 
   return (
     <View style={styles.container}>
-      <View>
+      <View >
         <Text style={styles.usernametext}>Hi</Text>
-        <TouchableOpacity onPress={handleUserProfile}>
-      <Image style={styles.profile}source={require('../assets/userprofile.png')}/>
+        <TouchableOpacity onPress={handleUserProfile}
+          >
+      <Image testID="profile-image"style={styles.profile}source={require('../assets/userprofile.png')}/>
       </TouchableOpacity>
       </View>
       <View style={styles.headerview}>
@@ -54,12 +55,13 @@ useEffect(() => {
         <View style={styles.button}>
           <Button title='Add Pet' color='white' onPress={Addpet}/> 
       </View>
-      <FlatList
+      <FlatList 
         data={pets} 
         keyExtractor={(item) => item._id} 
         renderItem={({ item }) => (
-          <View style={styles.pet}>
-            <TouchableOpacity  onPress={() => handlePetProfile(item)}>
+          <View style={styles.pet} accessible={true}>
+            <TouchableOpacity  onPress={() => handlePetProfile(item)} accessibilityRole="button"
+          accessible={true}>
             <Image
                 source={{ uri: `data:image/jpeg;base64,${item.image}` }} 
                 style={styles.petImage}
