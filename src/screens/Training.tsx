@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Linking } from 'react-native';
-import { resources, TrainingResource } from '../data/Trainingdata';
+import { resources, TrainingResource } from '../data/TrainingData';
 const Training = () => {
   const handlePress = (resource: TrainingResource) => {
     Linking.openURL(resource.url);
