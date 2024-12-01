@@ -60,5 +60,4 @@ describe('AddPetScreen', () => {
       expect(imageResponse.assets[0].base64).toBeDefined();
     });
   });
-
 });

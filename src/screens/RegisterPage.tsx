@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, TextInput, Image, Text, Button, View, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { StackActions } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,12 +7,16 @@ const RegisterPage = ({ navigation }: any) => {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const[confirmpassword, setconfirmpassword]= useState('');
+  const[email, setemail]=useState('');
+  const[phonenumber, setphonenumber]=useState('');
+  const[aboutme, setaboutme]=useState('');
+  const[adress, setadress]=useState('');
+  
   
   const handleLogin = () => {
     navigation.navigate('Login');
   };
   const handlePressRegister = async () => {
-    navigation.navigate('Loading');  
     if (password !== confirmpassword) {
       Alert.alert("Passwords do not match");
       return;
@@ -25,8 +29,12 @@ const RegisterPage = ({ navigation }: any) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username,
-          password,
+        username,
+        password,
+        aboutme,
+        email,
+        phonenumber,
+        adress,
         }),
       });
 
@@ -45,13 +53,14 @@ const RegisterPage = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView >
       <Image
         testID="pet-image"
         style={styles.image}
         source={require('../assets/petregister.jpeg')}
       />
       <Text style={styles.header}>Hey! welcome to PetBuddy</Text>
-
+<View style={styles.inputview}>
       <TextInput
         value={username}
         testID="username-field"
@@ -66,6 +75,7 @@ const RegisterPage = ({ navigation }: any) => {
         style={styles.input}
         placeholder="Enter password"
         onChangeText={(text) => setpassword(text)}
+        secureTextEntry
       />
       <TextInput
         value={confirmpassword}
@@ -73,29 +83,59 @@ const RegisterPage = ({ navigation }: any) => {
         style={styles.input}
         placeholder="confirm your password"
         onChangeText={(text) => setconfirmpassword(text)}
+        secureTextEntry
       />
-
+<TextInput
+        value={email}
+        testID="email-field"
+        style={styles.input}
+        placeholder="Enter email"
+        onChangeText={(text) => setemail(text)}/>
+        <TextInput
+        value={phonenumber}
+        testID="phonenumber-field"
+        style={styles.input}
+        placeholder="Enter phonenumber"
+        onChangeText={(text) => setphonenumber(text)}
+      
+      />
+      <TextInput
+        value={aboutme}
+        testID="aboutme-field"
+        style={styles.input}
+        placeholder="share something intresting about you"
+        onChangeText={(text) => setaboutme(text)}
+      />
+      <TextInput
+        value={adress}
+        testID="address-field"
+        style={styles.input}
+        placeholder="Enter your adress"
+        onChangeText={(text) => setadress(text)}
+      />
+    </View>  
       <View style={styles.buttonview}>
         <Button title="Register" color="white" onPress={handlePressRegister}  />
       </View>
 
       <TouchableOpacity onPress={handleLogin}>
-        <Text>Already have an account? Login</Text>
+        <Text style={styles.text}>Already have an account? Login</Text>
       </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-
-
 const styles = StyleSheet.create({
   container: {
-    gap: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputview:{
+   gap: 15,
+  },
   input: {
-    width: '90%',
+    width: '100%',
     padding: 10,
     borderWidth: 1,
   },
@@ -109,13 +149,22 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#00bfff',
+    color: 'green',
   },
   buttonview: {
-    backgroundColor: '#00bfff',
+    marginTop: 5,
+    alignSelf: 'center',
+    borderRadius: 20,
+    backgroundColor: 'green',
     borderWidth: 2,
     height: 50,
     width: '40%',
   },
+  text:{
+    alignSelf:'center',
+    marginTop: 5,
+    fontWeight:'bold',
+    color:'green'
+  }
 });
 export default RegisterPage;

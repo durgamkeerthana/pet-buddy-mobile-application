@@ -3,13 +3,15 @@ import mongoose from 'mongoose';
 import userRouter from './userRouter';
 import { Request, Response } from 'express';
 
+
 const app = express();
 
 
 app.use(express.json()); 
 
 
-const url = 'mongodb://localhost/Pet';
+
+const url = "mongodb://0.0.0.0:27017/Pet";
 
 async function connectToMongoDB() {
     try {

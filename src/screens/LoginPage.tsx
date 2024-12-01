@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackActions } from '@react-navigation/native';
 
+
 const LoginPage = ({ navigation }: any) => {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
@@ -26,7 +27,7 @@ const LoginPage = ({ navigation }: any) => {
       const data = await response.json();
       if (response.ok) {
        setTimeout(() => {
-        setIsLoading(false);  
+        setIsLoading(false);
         navigation.dispatch(StackActions.replace('Main'));  
       }, 3000); 
       } else {
@@ -62,6 +63,7 @@ const LoginPage = ({ navigation }: any) => {
         style={styles.input}
         placeholder="Enter password"
         onChangeText={(text) => setpassword(text)}
+        secureTextEntry
       />
       <View style={styles.buttonview}>
         <Button title="Login" color="white" onPress={handlePressLogin} />
