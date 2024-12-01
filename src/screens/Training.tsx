@@ -12,7 +12,7 @@ const Training = () => {
       {resources.map((resource, index) => (
         <View key={index} style={styles.resourceContainer}>
           <TouchableOpacity onPress={() => handlePress(resource)}>
-            <Text style={styles.resourceTitle}>{resource.title}</Text>
+            <Text testID='resource-title' style={styles.resourceTitle}>{resource.title}</Text>
           </TouchableOpacity>
         </View>
       ))}
