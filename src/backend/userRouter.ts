@@ -191,5 +191,4 @@ userRouter.get('/getPetsGallery', async (req: Request, res: Response):Promise<an
   }
 });
 
-
 export default userRouter;

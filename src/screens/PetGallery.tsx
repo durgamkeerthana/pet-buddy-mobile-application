@@ -6,7 +6,6 @@ const PetGallery = ({  route }: { route:any }) => {
   const { pet } = route.params;
   const petName = pet?.name || '';
   const [images, setImages] = useState<string[]>([]);
-
   
   useEffect(() => {
     const fetchGallery = async () => {
