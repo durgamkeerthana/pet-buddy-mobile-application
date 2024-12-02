@@ -148,4 +148,48 @@ userRouter.get('/getUser',async (req: Request, res: Response): Promise<any> => {
     }
   },
 );
+userRouter.post('/addImageToGallery', async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { name, imageUri }: { name: string; imageUri: string } = req.body;
+
+    const pet = await Pet.findOne({ name });
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+      
+    pet.gallery.push(imageUri);
+
+  
+    await pet.save();
+
+    res.status(200).json({ message: 'Image added to gallery successfully', gallery: pet.gallery });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to add image to gallery'});
+  }
+});
+userRouter.get('/getPetsGallery', async (req: Request, res: Response):Promise<any> => {
+  try {
+    const { name }: { name: string } = req.query as { name: string };
+
+    if (!name) {
+      return res.status(400).json({ message: 'Pet name is required' });
+    }
+
+    const pet = await Pet.findOne({ name });
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    res.status(200).json({ gallery: pet.gallery });
+  } catch (error) {
+    console.error('Error fetching pet gallery:', error);
+    res.status(500).json({ message: 'Failed to fetch pet gallery' });
+  }
+});
+
+
 export default userRouter;

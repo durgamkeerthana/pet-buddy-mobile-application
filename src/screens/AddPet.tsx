@@ -15,13 +15,12 @@ const AddPet = () => {
   const [gender, setGender] = useState('');
   const [remarks, setRemarks] = useState('');
 
-  
   const chooseFromGallery = () => {
     launchImageLibrary(
       {
         mediaType: 'photo',
         quality: 1,
-        includeBase64: true,
+        includeBase64: true, 
       },
       response => {
         if (response.didCancel) {
@@ -30,8 +29,13 @@ const AddPet = () => {
         }
         if (response.assets && response.assets.length > 0) {
           const asset = response.assets[0];
-          if (asset.uri) {
-            setImage(asset.uri); 
+          if (asset.base64) {
+           
+            const base64Image = asset.base64;
+            setImage(base64Image);
+            console.log('Base64 Image:', base64Image);
+          } else {
+            console.log('ImagePicker Error: No base64 data found');
           }
         } else {
           console.log('ImagePicker Error: No assets found');
@@ -39,7 +43,7 @@ const AddPet = () => {
       }
     );
   };
-
+  
   
   const handleAddPet = async() => {
     try{

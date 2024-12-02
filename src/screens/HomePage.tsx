@@ -66,6 +66,7 @@ useEffect(() => {
                 source={{ uri: `data:image/jpeg;base64,${item.image}` }} 
                 style={styles.petImage}
               />
+              
               </TouchableOpacity>
             <Text style={styles.petName}>{item.name}</Text>
             <Text>Breed:{item.breed}</Text>

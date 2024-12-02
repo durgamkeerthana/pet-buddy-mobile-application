@@ -11,6 +11,7 @@ export interface TPet extends Document {
   height: number,
   color: string,
   remarks: string,
+  gallery: string[],
 }
 const petSchema: Schema<TPet> = new Schema({
   // owner: {
@@ -50,6 +51,10 @@ type: String,
   gender:{
     type: String,
     required: true, 
+  },
+  gallery: {
+    type: [String], 
+    default: [],
   },
 });
 const Pet = mongoose.model<TPet>('Pet', petSchema);
