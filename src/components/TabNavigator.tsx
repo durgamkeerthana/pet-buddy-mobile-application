@@ -17,12 +17,12 @@ export default function TabNavigator() {
                             source={require('../assets/homeicon.png')}
                             style={{ width: 30, height: 30, borderColor:'black' }}
                         /> )}}   />
-          <Tab.Screen name="Services" component={Services} options={{ headerShown: false,  tabBarIcon: ({ color, size }) => (
+          <Tab.Screen name="Services" component={Services} options={{ tabBarIcon: ({ color, size }) => (
                         <Image
                             source={require('../assets/services.png')}
                             style={{ width: 30, height: 30, borderColor:'black' }}
                         /> )}}   />
-          <Tab.Screen name="Trainings" component={Training} options={{ headerShown: false,tabBarIcon: ({ color, size }) => (
+          <Tab.Screen name="Trainings" component={Training} options={{ tabBarIcon: ({ color, size }) => (
                         <Image
                             source={require('../assets/training.png')}
                             style={{ width: 30, height: 30, borderColor:'black' }}

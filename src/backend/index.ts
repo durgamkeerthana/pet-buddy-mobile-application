@@ -10,8 +10,7 @@ const app = express();
 app.use(express.json()); 
 
 
-
-const url = "mongodb://0.0.0.0:27017/Pet";
+const url = "mongodb://0.0.0.0:27017/NewPet";
 
 async function connectToMongoDB() {
     try {
@@ -33,3 +32,9 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+import servicesRouter from './Servicesroutes'; 
+
+app.use('/services', servicesRouter);
+
+

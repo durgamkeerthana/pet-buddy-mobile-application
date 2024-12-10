@@ -4,7 +4,6 @@ import HomePage from '../src/screens/HomePage';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-
 global.fetch = jest.fn();
 
 describe('<HomePage />', () => {

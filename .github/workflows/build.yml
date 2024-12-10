@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: install pod dependencies
+        run: |
+          cd ios
+          pod install
       - name: build app 
         run: npx react-native build-ios
 

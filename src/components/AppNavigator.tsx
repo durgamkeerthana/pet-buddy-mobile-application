@@ -11,6 +11,8 @@ import UserProfileScreen from '../screens/UserProfileScreen';
 import AddPet from '../screens/AddPet';
 import PetProfileScreen from '../screens/PetProfileScreen';
 import PetGallery from '../screens/PetGallery';
+import ReminderScreen from '../screens/ReminderScreen';
+import ActivityScreen from '../screens/ActivityScreen';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -27,6 +29,8 @@ const AppNavigator = () => {
       <Stack.Screen name='AddPet' component={AddPet}/>
       <Stack.Screen name='PetProfile' component={PetProfileScreen}/>
       <Stack.Screen name='PetGallery' component={PetGallery}/>
+      <Stack.Screen name='Reminder' component={ReminderScreen}/>
+      <Stack.Screen name='Activity' component={ActivityScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
     

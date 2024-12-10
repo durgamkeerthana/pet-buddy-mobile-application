@@ -8,8 +8,7 @@ describe('Login Page tests', () => {
   beforeEach(() => {
     navigateMock = jest.fn();
   });
-
-  test('should render the login page attributes', () => {
+    test('should render the login page attributes', () => {
     const { getByTestId, getByText, getByRole } = render(
       <LoginPage navigation={{ navigate: navigateMock }} />
     );
