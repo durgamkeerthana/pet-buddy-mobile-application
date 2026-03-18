@@ -1,0 +1,38 @@
+name: PetBuddy
+
+on:
+  push:
+    branches:
+      - pet-profile-management
+  pull_request:
+    branches:
+      - main 
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'  
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: install pod dependencies
+        run: |
+          cd ios
+          pod install
+      - name: build app 
+        run: npx react-native build-ios
+
+      - name: run tests
+        run: npm test
+
+   
